@@ -6,7 +6,6 @@ const socket = require('socket.io');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
-const path = require('path');
 const httpStatus = require('http-status');
 const morganMiddleware = require('./middlewares/morgan');
 
@@ -40,12 +39,6 @@ app.use('/api/user', userRoute);
 app.use('/api/post', postRoute);
 app.use('/api/conversation', conversationRoute);
 app.use('/api/message', messageRoute);
-
-app.use(express.static(path.join(__dirname, '/client/build')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-});
 
 // have to work on auth as middleware using JWT's
 
